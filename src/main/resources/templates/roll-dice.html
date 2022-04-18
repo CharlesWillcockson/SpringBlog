@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Roll Some Dice</title>
+</head>
+<body>
+
+
+
+<main>
+    <div class="container" style="text-align: center">
+        <h1>Let's roll some dice!</h1>
+        <h3>Pick a number to guess.</h3>
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="card justify-content-center shadow-sm">
+                        <a class="btn btn-warning btn-sm" th:href="@{/roll-dice/1}">1</a>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="card justify-content-center shadow-sm">
+                        <a class="btn btn-warning btn-sm" th:href="@{/roll-dice/2}">2</a>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="card justify-content-center shadow-sm">
+                        <a class="btn btn-warning btn-sm" th:href="@{/roll-dice/3}">3</a>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="card justify-content-center shadow-sm">
+                        <a class="btn btn-warning btn-sm" th:href="@{/roll-dice/4}">4</a>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="card justify-content-center shadow-sm">
+                        <a class="btn btn-warning btn-sm" th:href="@{/roll-dice/5}">5</a>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="card justify-content-center shadow-sm">
+                        <a class="btn btn-warning btn-sm" th:href="@{/roll-dice/6}">6</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+
+</body>
+</html>
