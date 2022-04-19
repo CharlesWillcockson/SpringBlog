@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Show Post List</title>
+</head>
+<body>
+
+<nav th:replace="partials/navbar :: navbar"/>
+<div class="container">
+    <h1 th:text="${posts.title}"></h1>
+    <h4 th:text="${posts.body}"></h4>
+</div>
