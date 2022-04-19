@@ -9,15 +9,21 @@ import java.util.ArrayList;
 
 @Controller
 public class PostController {
+    private final PostRepository postDao;
+
+    public PostController(PostRepository postDao){
+        this.postDao = postDao;
+    }
 
     @GetMapping("/posts")
-    public String posts(Model model){
-        ArrayList<Post> allPosts = new ArrayList<>();
-
-        allPosts.add(new Post("First post", "Post number 1 (Pee-pee)"));
-        allPosts.add(new Post("Second post", "Post number 2 (Doo-doo)"));
-
-        model.addAttribute("posts", allPosts);
+    public String getPosts(Model model){
+//        ArrayList<Post> allPosts = new ArrayList<>();
+//
+//        allPosts.add(new Post("First post", "Post number 1 (Pee-pee)"));
+//        allPosts.add(new Post("Second post", "Post number 2 (Doo-doo)"));
+//
+//        model.addAttribute("posts", allPosts);
+        model.addAttribute("posts", postDao.findAll());
         return "posts/index";
     }
 
