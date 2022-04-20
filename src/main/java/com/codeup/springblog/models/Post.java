@@ -1,7 +1,8 @@
-package com.codeup.springblog;
+package com.codeup.springblog.models;
 
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name="posts")
@@ -14,6 +15,9 @@ public class Post {
     @Column(nullable = false)
     private String body;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
     public long getId() {
         return id;
@@ -50,5 +54,13 @@ public class Post {
 
     public void setBody(String body) {
         this.body = body;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
