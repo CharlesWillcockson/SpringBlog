@@ -35,13 +35,17 @@ public class PostController {
     }
 
     @GetMapping("/posts/{id}")
-    public String individualPost(@PathVariable long id, Model model) {
-        Post post = postDao.getPostById(id);
-        if (post.getUser() == null) {
-            List<User> users = userDao.findAll();
-            post.setUser(users.get(0));
-        }
-        model.addAttribute("post", post);
+//    public String individualPost(@PathVariable long id, Model model) {
+//        Post post = postDao.getPostById(id);
+//        if (post.getUser() == null) {
+//            List<User> users = userDao.findAll();
+//            post.setUser(users.get(0));
+//        }
+//        model.addAttribute("post", post);
+//        return "posts/show";
+    public String show(@PathVariable long id, Model model) {
+        Post onePost = postDao.getPostById(id);
+        model.addAttribute("post", onePost);
         return "posts/show";
 
     }
@@ -63,6 +67,18 @@ public class PostController {
 
     @PostMapping("/posts/create")
     public String create(@ModelAttribute Post post) {
+        postDao.save(post);
+        return "redirect:/posts";
+    }
+
+    @GetMapping("posts/{id}/edit")
+    public String showEditForm(@PathVariable long id, Model model) {
+        model.addAttribute("post", postDao.getPostById(id));
+        return "posts/edit";
+    }
+
+    @PostMapping("posts/{id}/edit")
+    public String editPost(@PathVariable long id, @ModelAttribute Post post) {
         postDao.save(post);
         return "redirect:/posts";
     }
