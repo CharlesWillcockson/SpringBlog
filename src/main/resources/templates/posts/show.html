@@ -3,11 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Show Post List</title>
+    <div th:replace="partials/head.html :: head"></div>
 </head>
 <body>
 
 <nav th:replace="partials/navbar :: navbar"/>
 <div class="container">
-    <h1 th:text="${posts.title}"></h1>
-    <h4 th:text="${posts.body}"></h4>
+    <h1 th:text="${post.title}"></h1>
+    <h4 th:text="${post.body}"></h4>
+    <p th:text="${post.user.getEmail()}"></p>
 </div>
