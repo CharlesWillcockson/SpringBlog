@@ -1,19 +1,26 @@
 package com.codeup.springblog.controllers;
 
 import com.codeup.springblog.repositories.PostRepository;
+import com.codeup.springblog.repositories.UserRepository;
 import com.codeup.springblog.models.Post;
+import com.codeup.springblog.models.User;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 public class PostController {
     private final PostRepository postDao;
+    private final UserRepository userDao;
 
-    public PostController(PostRepository postDao) {
+    public PostController(PostRepository postDao, UserRepository userDao) {
         this.postDao = postDao;
+        this.userDao = userDao;
     }
+
 
     @GetMapping("/posts")
     public String getPosts(Model model) {
@@ -27,28 +34,36 @@ public class PostController {
         return "posts/index";
     }
 
-    @RequestMapping(value = "/posts/{id}", method = RequestMethod.GET)
+    @GetMapping("/posts/{id}")
     public String individualPost(@PathVariable long id, Model model) {
-
-        Post post = new Post(1, "Title of post", "Body of post");
+        Post post = postDao.getPostById(id);
+        if (post.getUser() == null) {
+            List<User> users = userDao.findAll();
+            post.setUser(users.get(0));
+        }
         model.addAttribute("post", post);
-
-
         return "posts/show";
+
     }
 
     @GetMapping("/posts/create")
-    public String createGet(Model model) {
+    public String showCreateGet(Model model) {
         model.addAttribute("post", new Post());
         return "posts/create";
     }
 
-    @PostMapping(path = "posts/create")
-    public String createPost(@RequestParam String title, @RequestParam String body) {
-        Post newpost = new Post();
-        newpost.setTitle(title);
-        newpost.setBody(body);
-        postDao.save(newpost);
+//    @PostMapping(path = "posts/create")
+//    public String createPost(@RequestParam String title, @RequestParam String body) {
+//        Post newpost = new Post();
+//        newpost.setTitle(title);
+//        newpost.setBody(body);
+//        postDao.save(newpost);
+//        return "redirect:/posts";
+//    }
+
+    @PostMapping("/posts/create")
+    public String create(@ModelAttribute Post post) {
+        postDao.save(post);
         return "redirect:/posts";
     }
 
