@@ -9,7 +9,7 @@
 <nav th:replace="partials/navbar :: navbar"></nav>
 
 
-    <div class="col-12 card text-white bg-dark mb-3" th:each="post : ${posts}">
+    <div class="col-9 mx-3 card text-white bg-dark mb-3" th:each="post : ${posts}">
         <h3 class="card-title" th:text="${post.title}"></h3>
         <p class="card-body" th:text="${post.body}"></p>
         <!--    <h6 th:text="${post.user.getEmail()}"></h6>-->
