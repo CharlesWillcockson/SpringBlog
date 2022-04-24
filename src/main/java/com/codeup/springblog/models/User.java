@@ -37,6 +37,7 @@ public class User {
         email = copy.email;
         username = copy.username;
         password = copy.password;
+    }
 
 
     public long getId() {
@@ -79,3 +80,6 @@ public class User {
         this.email = email;
     }
 }
+
+
+
