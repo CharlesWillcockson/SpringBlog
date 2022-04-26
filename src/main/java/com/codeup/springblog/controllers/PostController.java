@@ -37,14 +37,15 @@ public class PostController {
     }
 
     @GetMapping("/posts/{id}")
-//    public String individualPost(@PathVariable long id, Model model) {
+    public String individualPost(@PathVariable long id, Model model) {
 //        Post post = postDao.getPostById(id);
 //        if (post.getUser() == null) {
 //            List<User> users = userDao.findAll();
 //            post.setUser(users.get(0));
 //        }
-//        model.addAttribute("post", post);
-//        return "posts/show";
+            model.addAttribute("post",postDao.getPostById(id));
+        return"posts/show";
+}
     public String show(@PathVariable long id, Model model) {
         Post onePost = postDao.getPostById(id);
         model.addAttribute("post", onePost);
