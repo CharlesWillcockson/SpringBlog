@@ -70,10 +70,9 @@ public class PostController {
 
     @PostMapping("/posts/create")
     public String create(@ModelAttribute Post post) {
-        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        post.setUser(loggedInUser);
+        post.setUser((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+        emailService.prepareAndSend(post,"New post created", "Your new post has been creatified!!!");
         postDao.save(post);
-        emailService.prepareAndSend(postDao.getOne(post.getId()), post.getTitle(), post.getBody());
         return "redirect:/posts";
     }
 
